@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 
 // Connect to MongoDB
-the const connectDB = async () => {
+const connectDB = async () => {
     try {
         await mongoose.connect('mongodb://localhost:27017/smart_greenhouse', {
             useNewUrlParser: true,

@@ -98,6 +98,7 @@ const MonitoringPage = () => {
     ],
   };
 
+
   const humidityData = {
     labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
     datasets: [
@@ -134,42 +135,51 @@ const MonitoringPage = () => {
     },
   };
 
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5 }}
-      className="site-layout-content"
-    >
-      <Row gutter={16} style={{ marginTop: 24 }}>
-        <Col span={24}>
-          <Card title="Графік Температури" bordered={false}>
-            <div style={{ height: '300px' }}>
-              <Line data={temperatureData} options={chartOptions} />
-            </div>
-          </Card>
-        </Col>
-      </Row>
-      <Row gutter={16} style={{ marginTop: 24 }}>
-        <Col span={24}>
-          <Card title="Графік Вологості" bordered={false}>
-            <div style={{ height: '300px' }}>
-              <Line data={humidityData} options={chartOptions} />
-            </div>
-          </Card>
-        </Col>
-      </Row>
-      <Row gutter={16} style={{ marginTop: 24 }}>
-        <Col span={24}>
-          <Card title="Графік Рівня CO2" bordered={false}>
-            <div style={{ height: '300px' }}>
-              <Line data={co2Data} options={chartOptions} />
-            </div>
-          </Card>
-        </Col>
-      </Row>
-    </motion.div>
-  );
+  await fetch('http://localhost:5000/api/monitoring', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newData),
+  });
+};
+
+return (
+  <motion.div
+    initial={{ opacity: 0, scale: 0.9 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.5 }}
+    className="site-layout-content"
+  >
+    <Row gutter={16} style={{ marginTop: 24 }}>
+      <Col span={24}>
+        <Card title="Графік Температури" bordered={false}>
+          <div style={{ height: '300px' }}>
+            <Line data={temperatureData} options={chartOptions} />
+          </div>
+        </Card>
+      </Col>
+    </Row>
+    <Row gutter={16} style={{ marginTop: 24 }}>
+      <Col span={24}>
+        <Card title="Графік Вологості" bordered={false}>
+          <div style={{ height: '300px' }}>
+            <Line data={humidityData} options={chartOptions} />
+          </div>
+        </Card>
+      </Col>
+    </Row>
+    <Row gutter={16} style={{ marginTop: 24 }}>
+      <Col span={24}>
+        <Card title="Графік Рівня CO2" bordered={false}>
+          <div style={{ height: '300px' }}>
+            <Line data={co2Data} options={chartOptions} />
+          </div>
+        </Card>
+      </Col>
+    </Row>
+  </motion.div>
+);
 };
 
 const SettingsPage = () => (
