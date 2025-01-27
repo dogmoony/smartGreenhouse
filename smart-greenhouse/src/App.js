@@ -272,7 +272,7 @@ const App = () => {
           {renderContent()}
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-          Smart Greenhouse ©2025 Created by Anastasiia
+          Smart Greenhouse ©2025 Created by Kateryna Kushnir
         </Footer>
       </Layout>
     </Layout>
